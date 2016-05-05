@@ -12,6 +12,7 @@ flags = [
   # General flags
   '-Wall'
   ,'-Wextra'
+  ,'-pedantic'
   ,'-Wno-attributes'
   ,'-std=c11'
   ,'-fsanitize=address'

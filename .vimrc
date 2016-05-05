@@ -43,7 +43,7 @@ autocmd FileType make setlocal ts=4 sw=4 sts=4 noexpandtab
 "autocmd Filetype eruby setlocal ts=2 sw=2 sts=2 expandtab
 "autocmd Filetype cs setlocal ts=2 sw=2 sts=2 expandtab
 
-autocmd Filetype c setlocal ts=4 sw=4 sts=4 expandtab
+autocmd Filetype c setlocal ts=2 sw=2 sts=2 expandtab
 
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_global_ycm_extra_conf = '~/.vim/ycm_extra_conf.py'
@@ -98,3 +98,5 @@ au FileType go nmap <leader>c <Plug>(go-coverage)
 au FileType go nmap <Leader>s <Plug>(go-implements)
 au FileType go nmap <Leader>i <Plug>(go-info)
 au FileType go nmap <Leader>e <Plug>(go-rename)
+
+set guioptions=
