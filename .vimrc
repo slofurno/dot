@@ -84,6 +84,7 @@ nnoremap j gj
 nnoremap k gk
 
 nnoremap <leader>] :YcmCompleter GoTo<CR>
+command -nargs=1 Rename YcmCompleter RefactorRename <args>
 
 let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
 let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
