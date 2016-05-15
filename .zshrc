@@ -109,3 +109,4 @@ dev() {
 }
 
 #[ -s "/home/slofurno/.dnx/dnvm/dnvm.sh" ] && . "/home/slofurno/.dnx/dnvm/dnvm.sh" # Load dnvm
+alias rebar="/home/slofurno/sources/rebar3/rebar3"
