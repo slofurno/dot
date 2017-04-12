@@ -57,10 +57,9 @@ plugins=(git)
 
 # export MANPATH="/usr/local/man:$MANPATH"
 export PATH=$PATH:/usr/local/go/bin
-#export PATH=$PATH:/home/slofurno/sources/node-v5.5.0-linux-x64/bin
+
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:/home/slofurno/sources/elixir1.23/bin
 
 source $ZSH/oh-my-zsh.sh
 
@@ -93,10 +92,13 @@ source $ZSH/oh-my-zsh.sh
 
 alias devgo="cd $GOPATH/src/github.com/slofurno"
 
+clip() {
+  xclip -selection clipboard
+}
+
 #export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 #export PATH="$HOME/.rbenv/bin:$PATH"
 #eval "$(rbenv init -)"
-
 dev() {
   case $1 in
     go )
@@ -108,5 +110,28 @@ dev() {
   esac
 }
 
-#[ -s "/home/slofurno/.dnx/dnvm/dnvm.sh" ] && . "/home/slofurno/.dnx/dnvm/dnvm.sh" # Load dnvm
-alias rebar="/home/slofurno/sources/rebar3/rebar3"
+ton() {
+  $HOME/touchpad.sh 1
+}
+
+toff() {
+  $HOME/touchpad.sh 0
+}
+
+export PATH=$PATH:/home/slofurno/sources/elixir/bin
+
+# The next line updates PATH for the Google Cloud SDK.
+source '/home/slofurno/sources/google-cloud-sdk/path.zsh.inc'
+
+# The next line enables shell command completion for gcloud.
+source '/home/slofurno/sources/google-cloud-sdk/completion.zsh.inc'
+
+preexec () {
+  echo -ne "\ek${1%% *}\e\\"
+}
+
+unalias gg
+gg() {
+  git grep "$@" -- './*' ':!/vendor/'
+}
+
