@@ -13,5 +13,19 @@ godiff() {
 }
 
 gotest() {
-  go test -v -race ./...
+  go test -v -race ./... "$@"
+}
+
+unalias gg
+gg() {
+  git grep "$@" -- './*' ':!/vendor/' ':!/docs/'
+}
+
+unalias gl
+gl() {
+  git log --oneline
+}
+
+gt() {
+  git log --oneline --decorate --tags --no-walk
 }
