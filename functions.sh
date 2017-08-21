@@ -13,7 +13,7 @@ godiff() {
 }
 
 gotest() {
-  go test -v -race ./... "$@"
+  go test -v -race ./... $@
 }
 
 unalias gg
@@ -23,9 +23,14 @@ gg() {
 
 unalias gl
 gl() {
-  git log --oneline
+  if [[ $@ == "" ]]; then
+    git log --oneline
+  else
+    git log $@
+  fi
 }
 
 gt() {
   git log --oneline --decorate --tags --no-walk
 }
+
