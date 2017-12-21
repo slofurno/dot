@@ -15,12 +15,13 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Bundle 'vim-ruby/vim-ruby'
 Plugin 'elixir-lang/vim-elixir'
 "Plugin 'OmniSharp/omnisharp-vim'
-Plugin 'ternjs/tern_for_vim'
+"Plugin 'ternjs/tern_for_vim'
 Plugin 'tpope/vim-dispatch'
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'vim-erlang/vim-erlang-omnicomplete'
 Plugin 'slashmili/alchemist.vim'
+Plugin 'davidhalter/jedi-vim'
 
 
 call vundle#end()            " required
@@ -84,6 +85,10 @@ set wildignore+=*.pyc                            " Python byte code
 set wildignore+=*.orig                           " Merge resolution files
 set wildignore+=*/vendor
 set wildignore+=*/node_modules
+set wildignore+=*/app/cache
+set wildignore+=/docs
+set wildignore+=*/WebBundle
+set wildignore+=*/deps
 
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
@@ -99,13 +104,15 @@ command WQ wq
 command Wq wq
 command W w
 command Q q
+command Vs vs
 
 nnoremap j gj
 nnoremap k gk
+nnoremap Q <nop>
 
 nnoremap <leader>] :YcmCompleter GoTo<CR>
-vnoremap <leader>c :!cat > ~/temp<CR>
-vnoremap <leader>p :!cat ~/temp<CR>
+"vnoremap <leader>c :!cat > ~/temp<CR>
+"vnoremap <leader>p :!cat ~/temp<CR>
 
 let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
 let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }

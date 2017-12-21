@@ -1,10 +1,13 @@
-# Path to your oh-my-zsh installation.
-  export ZSH=/home/slofurno/.oh-my-zsh
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
+# Path to your oh-my-zsh installation.
+export ZSH=$HOME/.oh-my-zsh
+export BASH_ENV=$HOME/non_interactive.sh
+
+# Set name of the theme to load. Optionally, if you set this to "random"
+# it'll load a random theme each time that oh-my-zsh is loaded.
+# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="robbyrussell"
 
 # Uncomment the following line to use case-sensitive completion.
@@ -51,17 +54,29 @@ ZSH_THEME="robbyrussell"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git)
 
-# User configuration
-
-#export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
-
-# export MANPATH="/usr/local/man:$MANPATH"
 export PATH=$PATH:/usr/local/go/bin
 
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 
+export PATH=$PATH:/usr/local/opt/ansible@2.0/bin
+
+dev() {
+  case $1 in
+    go )
+      cd "$HOME/go/src/github.com"
+      ;;
+    * )
+      cd "$HOME/dev/$1"
+      ;;
+  esac
+}
+
 source $ZSH/oh-my-zsh.sh
+
+# User configuration
+
+# export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -77,61 +92,50 @@ source $ZSH/oh-my-zsh.sh
 # export ARCHFLAGS="-arch x86_64"
 
 # ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
+# export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 #
+#
+
+# preexec () {
+#   echo -ne "\ek${1%% *}\e\\"
+# }
+
+unalias rd
+rd() {
+  java -jar /Users/slofurno/dev/sources/rundeck-cli-1.0.13-all.jar "$@"
+}
+
+export RD_USER=slofurno
+export RD_PASSWORD=sidecar13
+export RD_URL=https://rundeck.sidecartechnologies.com/api/17
+
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+#compinit
+#source /Users/slofurno/dev/sources/aws-cli/bin/aws_zsh_completer.sh
+#
+source $HOME/functions.sh
+source $HOME/non_interactive.sh
 
-#source /home/slofurno/dev/dotnet/dnvm.sh
+unset AWS_ACCESS_KEY_ID
+unset AWS_SECRET_ACCESS_KEY
+export AWS_DEFAULT_PROFILE=sidecar
+export AWS_PROFILE=sidecar #apex doesn't respect default profile
+export ANSIBLE_VAULT_PASSWORD_FILE=$HOME/dev/.ansible-secret
 
-alias devgo="cd $GOPATH/src/github.com/slofurno"
+# added by travis gem
+[ -f /Users/slofurno/.travis/travis.sh ] && source /Users/slofurno/.travis/travis.sh
 
-clip() {
-  xclip -selection clipboard
-}
+#setopt SH_WORD_SPLIT
+export PATH="$HOME/.yarn/bin:$PATH"
 
-#export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-#export PATH="$HOME/.rbenv/bin:$PATH"
-#eval "$(rbenv init -)"
-dev() {
-  case $1 in
-    go )
-      cd "$HOME/go/src/github.com/slofurno"
-      ;;
-    * )
-      cd "$HOME/dev/$1"
-      ;;
-  esac
-}
+bindkey "^U" backward-kill-line
 
-ton() {
-  $HOME/touchpad.sh 1
-}
-
-toff() {
-  $HOME/touchpad.sh 0
-}
-
-export PATH=$PATH:/home/slofurno/sources/elixir/bin
-
-# The next line updates PATH for the Google Cloud SDK.
-source '/home/slofurno/sources/google-cloud-sdk/path.zsh.inc'
-
-# The next line enables shell command completion for gcloud.
-source '/home/slofurno/sources/google-cloud-sdk/completion.zsh.inc'
-
-preexec () {
-  echo -ne "\ek${1%% *}\e\\"
-}
-
-unalias gg
-gg() {
-  git grep "$@" -- './*' ':!/vendor/'
-}
+export LESS="$LESS -i"
 

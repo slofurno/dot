@@ -7,7 +7,7 @@ echo "??"
 
 #for a in `ifstat`; do
 
-ifstat -i enp9s0 3 | while read a; do
+ifstat -i en0 3 | while read a; do
     echo $a
 done
 

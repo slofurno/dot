@@ -18,7 +18,7 @@ gotest() {
 
 unalias gg
 gg() {
-  git grep "$@" -- './*' ':!/vendor/' ':!/docs/'
+  git grep -i "$@" -- './*' ':!/vendor/' ':!/docs/' ':!*.lock' ':!*.min.js'
 }
 
 unalias gl

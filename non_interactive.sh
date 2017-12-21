@@ -1,6 +1,10 @@
 
 sides() {
-  node /Users/slofurno/dev/js/log/client_info.js $@ | jq .
+  $GOPATH/src/github.com/Getsidecar/developer-tools/bin/sides $@ | jq .
+}
+
+justline() {
+  head -n$1 | tail -n1
 }
 
 sec_usage() {
