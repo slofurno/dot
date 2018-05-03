@@ -1,5 +1,10 @@
 #!/bin/sh
 
+unalias gg
+gg() {
+  git grep -i "$@" -- './*' ':!/vendor/' ':!/docs/' ':!*.lock' ':!*.min.js' ':!*.csv'
+}
+
 goget() {
   go get -t -v ./...
 }
@@ -16,9 +21,13 @@ gotest() {
   go test -v -race ./... $@
 }
 
-unalias gg
-gg() {
-  git grep -i "$@" -- './*' ':!/vendor/' ':!/docs/' ':!*.lock' ':!*.min.js'
+unalias gb
+gb() {
+  if [[ $# -ne 0 ]]; then
+    git branch "$@"
+  else
+    git branch --sort=-committerdate --color=always | head
+  fi
 }
 
 unalias gl
