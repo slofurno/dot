@@ -38,12 +38,27 @@ set background=dark
 colorscheme solarized
 autocmd FileType go setlocal ts=4 sw=4 sts=4 noexpandtab
 autocmd FileType make setlocal ts=4 sw=4 sts=4 noexpandtab
+autocmd FileType python setlocal ts=4 sw=4 sts=4 expandtab
 "autocmd Filetype html setlocal ts=2 sw=2 sts=2 expandtab
 "autocmd Filetype ruby setlocal ts=2 sw=2 sts=2 expandtab
 "autocmd Filetype eruby setlocal ts=2 sw=2 sts=2 expandtab
 "autocmd Filetype cs setlocal ts=2 sw=2 sts=2 expandtab
 
+"function! PythonCompileCheck()
+"  silent !clear
+"  let pers = system("python -m py_compile " . bufname("%"))
+"  split __Potion_Bytecode__
+"  call append(0, split(pers, '\v\n'))
+"  redraw!
+"endfunction
+
 autocmd Filetype c setlocal ts=4 sw=4 sts=4 expandtab
+
+"augroup testgroup
+"  autocmd!
+"  autocmd BufWritePost *.py call PythonCompileCheck()
+"  "autocmd BufWritePost *.py silent !python -m py_compile <afile>
+"augroup END
 
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_global_ycm_extra_conf = '~/.vim/ycm_extra_conf.py'
@@ -52,6 +67,7 @@ let g:ycm_autoclose_preview_window_after_insertion = 1
 "let g:ycm_filetype_specific_completion_to_disable = { 'javascript': 1 }
 
 let g:go_highlight_functions = 1
+let g:go_highlight_function_calls = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_operators = 1
