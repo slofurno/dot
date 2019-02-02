@@ -1,9 +1,13 @@
 #hardstatus alwayslastline
 
 defscrollback 15000
+ignorecase on
 
-term xterm-256color
 vbell off
+term xterm-256color
+attrcolor b ".I"
+termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
+defbce on
 
 bind j focus top
 bind k focus bottom
@@ -15,7 +19,7 @@ backtick 1 0 0 /usr/local/bin/screen-mem-usage
 backtick 2 0 0 /usr/local/bin/screen-cpu-usage
 #backtick 3 0 0 ifstat
 backtick 3 0 0 /home/slofurno/network.sh
-backtick 4 0 0 /home/slofurno/bat.sh
+#backtick 4 0 0 /home/slofurno/bat.sh
 
 hardstatus alwayslastline
-hardstatus string '%{gk}Net:%{Gk}%3`%{gk} %=%{bk}Mem:%{Bk}%1`  %{yk}Cpu:%{Yk}%2`%%  %{Rk}Load:%{rk}%l%= %{gk}Bat:%{Gk}%4`%%  %{ck} %D %m/%d %{Ck}%C%a%{w}'
+hardstatus string '%{gk}Net:%{Gk}%3`%{gk} %=%{bk}Mem:%{Bk}%1`  %{yk}Cpu:%{Yk}%2`%%  %{Rk}Load:%{rk}%l%= %{ck} %D %m/%d %{Ck}%C%a%{w}'

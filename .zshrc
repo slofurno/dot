@@ -1,5 +1,6 @@
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/slofurno/.oh-my-zsh
+export ZSH=/home/slofurno/.oh-my-zsh
+export BASH_ENV=/home/slofurno/non_interactive.sh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -72,6 +73,9 @@ source $ZSH/oh-my-zsh.sh
 # else
 #   export EDITOR='mvim'
 # fi
+#
+export VISUAL=/usr/local/bin/vim
+export EDITOR="$VISUAL"
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -89,6 +93,8 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 #source /home/slofurno/dev/dotnet/dnvm.sh
+source /home/slofurno/functions.sh
+source /home/slofurno/non_interactive.sh
 
 alias devgo="cd $GOPATH/src/github.com/slofurno"
 
@@ -121,17 +127,38 @@ toff() {
 export PATH=$PATH:/home/slofurno/sources/elixir/bin
 
 # The next line updates PATH for the Google Cloud SDK.
-source '/home/slofurno/sources/google-cloud-sdk/path.zsh.inc'
+#source '/home/slofurno/sources/google-cloud-sdk/path.zsh.inc'
 
 # The next line enables shell command completion for gcloud.
-source '/home/slofurno/sources/google-cloud-sdk/completion.zsh.inc'
+#source '/home/slofurno/sources/google-cloud-sdk/completion.zsh.inc'
 
-preexec () {
-  echo -ne "\ek${1%% *}\e\\"
-}
+#preexec () {
+#  echo -ne "\ek${1%% *}\e\\"
+#}
 
-unalias gg
+unalias gg 2> /dev/null
 gg() {
   git grep "$@" -- './*' ':!/vendor/'
 }
 
+bindkey "^U" backward-kill-line
+
+
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/jre/
+export HIVE_HOME=/home/slofurno/sources/apache-hive-2.3.0-bin
+export PATH=$PATH:$HIVE_HOME/bin
+export HADOOP_HOME=/home/slofurno/sources/hadoop-2.8.1
+export PATH=$PATH:$HADOOP_HOME/bin
+
+export PATH=$HOME/.local/bin:$PATH
+export PATH=/usr/lib/postgresql/9.6/bin:$PATH
+
+export HISTSIZE=900000
+export SAVEHIST=$HISTSIZE
+
+export LESS="$LESS -i"
+
+export PATH="$HOME/.cargo/bin:$PATH"
+
+# added by travis gem
+[ -f /home/slofurno/.travis/travis.sh ] && source /home/slofurno/.travis/travis.sh

@@ -1,6 +1,6 @@
 
 sides() {
-  node /Users/slofurno/dev/js/log/client_info.js $@ | jq .
+  node /home/slofurno/.sidecar/sides $@ | jq .
 }
 
 sec_usage() {
@@ -35,4 +35,10 @@ sec() {
       sec_usage
       ;;
   esac
+}
+
+source /home/slofurno/.secret
+
+aurora () {
+  psql -hlocalhost -Ureporting -dds_production -p54320 "$@"
 }

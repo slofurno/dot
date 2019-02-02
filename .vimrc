@@ -21,6 +21,8 @@ Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'vim-erlang/vim-erlang-omnicomplete'
 Plugin 'slashmili/alchemist.vim'
+Plugin 'chriskempson/base16-vim'
+Plugin 'davidhalter/jedi-vim'
 
 
 call vundle#end()            " required
@@ -33,8 +35,7 @@ set ignorecase
 set smartcase
 set nowrap
 
-set background=dark
-colorscheme solarized
+"colorscheme base16-default-dark
 autocmd FileType go setlocal ts=4 sw=4 sts=4 noexpandtab
 autocmd FileType make setlocal ts=4 sw=4 sts=4 noexpandtab
 "autocmd Filetype html setlocal ts=2 sw=2 sts=2 expandtab
@@ -51,6 +52,7 @@ let g:ycm_autoclose_preview_window_after_insertion = 1
 "let g:ycm_filetype_specific_completion_to_disable = { 'javascript': 1 }
 
 let g:go_highlight_functions = 1
+let g:go_highlight_function_calls = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_operators = 1
@@ -105,7 +107,7 @@ nnoremap k gk
 
 nnoremap <leader>] :YcmCompleter GoTo<CR>
 vnoremap <leader>c :!cat > ~/temp<CR>
-vnoremap <leader>p :!cat ~/temp<CR>
+noremap <leader>p <C-V>:!cat ~/temp<CR>
 
 let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
 let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
@@ -115,3 +117,4 @@ let g:rustfmt_autosave = 1
 
 set guioptions=
 let g:netrw_liststyle=3
+let g:go_version_warning = 0
