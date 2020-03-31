@@ -5,7 +5,7 @@ goget() {
 }
 
 govet() {
-  go vet $(go list ./... | grep -v /vendor/)
+  go vet -composites=false $(go list ./... | grep -v /vendor/)
 }
 
 godiff() {
@@ -29,7 +29,7 @@ gg() {
 unalias gl
 gl() {
   #git log --graph --decorate --oneline --first-parent --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)'
-  git log --graph --decorate --oneline --first-parent --all --format=format:'%C(auto)%h (%ar) %s - %an %d'
+  git log --graph --decorate --oneline --first-parent --format=format:'%C(auto)%h (%ar) %s - %an %d'
 }
 
 gt() {
@@ -44,3 +44,6 @@ gitlog() {
   fi
 }
 
+sortbylength() {
+  awk '{ print length, $0 }' | sort -n | cut -d' ' -f2-
+}

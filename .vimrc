@@ -15,14 +15,19 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Bundle 'vim-ruby/vim-ruby'
 Plugin 'elixir-lang/vim-elixir'
 "Plugin 'OmniSharp/omnisharp-vim'
-Plugin 'ternjs/tern_for_vim'
+"Plugin 'ternjs/tern_for_vim'
 Plugin 'tpope/vim-dispatch'
 Plugin 'ntpeters/vim-better-whitespace'
-Plugin 'altercation/vim-colors-solarized'
+"Plugin 'altercation/vim-colors-solarized'
+Plugin 'lifepillar/vim-solarized8'
 Plugin 'vim-erlang/vim-erlang-omnicomplete'
 Plugin 'slashmili/alchemist.vim'
 Plugin 'chriskempson/base16-vim'
 Plugin 'davidhalter/jedi-vim'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'martinda/Jenkinsfile-vim-syntax'
+Plugin 'google/vim-jsonnet'
+"Plugin 'Yggdroot/indentline'
 
 
 call vundle#end()            " required
@@ -34,6 +39,11 @@ set backspace=indent,eol,start
 set ignorecase
 set smartcase
 set nowrap
+
+set background=dark
+colorscheme solarized8
+"let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
+"let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
 
 "colorscheme base16-default-dark
 autocmd FileType go setlocal ts=4 sw=4 sts=4 noexpandtab
@@ -64,6 +74,7 @@ let g:go_highlight_space_tab_error = 0
 let g:go_highlight_array_whitespace_error = 0
 let g:go_highlight_trailing_whitespace_error = 0
 
+let g:go_rename_command = 'gopls'
 "let g:go_fmt_command = "goimports"
 
 set wildmenu
@@ -89,10 +100,22 @@ set wildignore+=*/node_modules
 
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_cmd = 'CtrlPMixed'
+let g:ctrlp_mruf_relative = 1
 let g:ctrlp_working_path_mode = 'ra'
 "let g:ctrlp_working_path_mode = '0'
 "let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 "let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn|node_modules)$'
+let g:ctrlp_max_height=25
+let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+
+if executable('rg')
+  let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
+  let g:ctrlp_use_caching = 0
+endif
+
+"if executable('ag')
+"  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 
 "hi goSpaceError ctermfg=NONE ctermbg=NONE cterm=NONE guifg=NONE guibg=NONE gui=NONE
 let g:tern_show_argument_hints=1

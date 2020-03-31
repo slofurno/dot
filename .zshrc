@@ -59,6 +59,7 @@ plugins=(git)
 # export MANPATH="/usr/local/man:$MANPATH"
 export PATH=$PATH:/usr/local/go/bin
 
+export GO111MODULE=auto
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 
@@ -144,7 +145,7 @@ gg() {
 bindkey "^U" backward-kill-line
 
 
-export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/jre/
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 export HIVE_HOME=/home/slofurno/sources/apache-hive-2.3.0-bin
 export PATH=$PATH:$HIVE_HOME/bin
 export HADOOP_HOME=/home/slofurno/sources/hadoop-2.8.1
@@ -162,3 +163,6 @@ export PATH="$HOME/.cargo/bin:$PATH"
 
 # added by travis gem
 [ -f /home/slofurno/.travis/travis.sh ] && source /home/slofurno/.travis/travis.sh
+
+export PATH=$PATH:~/.jx/bin:/home/slofurno/sbt/bin
+unset AWS_ACCESS_KEY_ID
